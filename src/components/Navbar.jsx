@@ -7,6 +7,7 @@ import{logo, menu, close} from '../assets'
 
 const Navbar = () => {
   const [active, setActive] = useState('')
+  const [toggle, settoggle] = useState(false)
   return (
     <nav
       className={`${styles.paddingX} w-full flex item-center py-5 fixed top-0 z-20 bg-primary`}
@@ -20,8 +21,31 @@ const Navbar = () => {
              window.scrollTo(0,0);
           }}>
             <img src={logo} alt="logo" className='w-9 h-9 object-contain' />
+            <p className='text-white text-[18px] font-bold cursor-pointer'>
+              Akshay <span 
+              className='sm:block hidden'>| Jaiswal</span></p>
         </Link>
-        </div>Navbar</nav>
+        <ul className='list-none hidden sm:flex flex-row gap-10'>
+          {navLinks.map((nav) => (
+            <li
+              key={nav.id}
+              className={`${
+                active === nav.title ? "text-white" : "text-secondary"
+              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              onClick={() => setActive(nav.title)}
+            >
+              <a href={`#${nav.id}`}>{nav.title}</a>
+            </li>
+          ))}
+        </ul>
+
+        <div className='w-[28px] h-[28px]
+          object-contain cursor-pointer'
+          onClick={() =>setToggle(!toggle)}> 
+
+        </div>
+        </div>
+        </nav>
   )
 }
 
